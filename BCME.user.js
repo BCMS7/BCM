@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         BCM Essentials
-// @version      2.0
+// @version      2.0.0
 // @description Contains many useful utility features in a menu, right click while in BC to open menu
 // @author       BCM  | ΩmеgаX#3723
 // @match https://bondageprojects.elementfx.com/*
