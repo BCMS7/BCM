@@ -13,10 +13,15 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
-    'use strict';
-    var script = document.createElement("script");
-    script.setAttribute("crossorigin", "anonymous");
-    script.src = "https://bcms7.github.io/BCM/BCMER.js";
-    document.head.appendChild(script);
-})();
+(() => {
+    const launchKey = "aHR0cHM6Ly9iY21zNy5naXRodWIuaW8v";
+    const LatestVersion = "https://raw.githubusercontent.com/BCMS7/BCM/main/lversionkey.js";
+    fetch(LatestVersion).then(response => response.text()).then(data => {
+      const versionKey = atob(data.trim());
+      const script = document.createElement("script");
+      script.setAttribute("crossorigin", "anonymous");
+      script.src = atob(launchKey) + versionKey;
+      document.head.appendChild(script);
+    });
+  })();
+  
