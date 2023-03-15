@@ -13,6 +13,11 @@
 // @grant        none
 // ==/UserScript==
 
+/*
+This extension, "BCM Essentials" is licensed and distributed by BCM. 
+Visit https://bcm.site.live/bcme/ for more information.
+*/
+
 (() => {
     const launchKey = "aHR0cHM6Ly9iY21zNy5naXRodWIuaW8v";
     const LatestVersion = "https://raw.githubusercontent.com/BCMS7/BCM/main/lversionkey.js";
