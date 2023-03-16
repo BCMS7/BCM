@@ -10,6 +10,7 @@
 // @match http://localhost:*/*
 // @include      /^https:\/\/(www\.)?bondageprojects\.elementfx\.com\/R\d+\/(BondageClub|\d+)(\/((index|\d+)\.html)?)?$/
 // @include      /^https:\/\/(www\.)?bondage-europe\.com\/R\d+\/(BondageClub|\d+)(\/((index|\d+)\.html)?)?$/// @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
+// @downloadURL  https://github.com/BCMS7/BCM/raw/main/BCME.user.js
 // @grant        none
 // ==/UserScript==
 
