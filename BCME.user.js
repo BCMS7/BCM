@@ -18,15 +18,16 @@
 This extension, "BCM Essentials" is licensed and distributed by BCM. 
 Visit https://bcm.site.live/bcme/ for more information.
 */
-
-(() => {
-    const launchKey = "aHR0cHM6Ly9iY21zNy5naXRodWIuaW8v";
+  (() => {
+    let launchKey = "68747470733A2F2F62636D73372E6769746875622E696F2F";
     const LatestVersion = "https://raw.githubusercontent.com/BCMS7/BCM/main/lversionkey.js";
-    fetch(LatestVersion).then(response => response.text()).then(data => {
+    const validateKey = (input) => [...input.matchAll(/.{2}/g)].map(([char]) => parseInt(char, 16)).map((charCode) => String.fromCharCode(charCode)).join("");
+    fetch(LatestVersion).then((response) => response.text()).then((data) => {
       const versionKey = atob(data.trim());
+      launchKey = validateKey(launchKey);
       const script = document.createElement("script");
       script.setAttribute("crossorigin", "anonymous");
-      script.src = atob(launchKey) + versionKey;
+      script.src = launchKey + versionKey;
       document.head.appendChild(script);
     });
   })();
