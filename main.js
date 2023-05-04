@@ -820,57 +820,69 @@ fetch(htmlFileUrl)
           bcarLoaded = !1,
           bctLoaded = !1;
         function loadFBC() {
-          if (fbcLoaded) return;
-          let e = document.createElement("script");
-          (e.src = `https://sidiousious.gitlab.io/bce/bce.user.js?v=${(
-            Date.now() / 1e4
-          ).toFixed(0)}`),
-            document.head.appendChild(e),
-            (fbcLoaded = !0);
-        }
-        function loadBCX() {
-          !bcxLoaded &&
-            setTimeout(() => {
-              if (void 0 === window.BCX_Loaded) {
-                let e = document.createElement("script");
-                e.setAttribute("language", "JavaScript"),
-                  e.setAttribute("crossorigin", "anonymous"),
-                  e.setAttribute(
-                    "src",
-                    "https://jomshir98.github.io/bondage-club-extended/bcx.js?_=" +
-                      Date.now()
-                  ),
-                  (e.onload = () => e.remove()),
-                  document.head.appendChild(e),
-                  (bcxLoaded = !0);
-              }
-            }, 2e3);
-        }
-        function loadMBS() {
-          !mbsLoaded &&
-            setTimeout(() => {
-              let e = document.createElement("script");
-              (e.language = "JavaScript"),
-                (e.crossorigin = "anonymous"),
-                (e.src = "https://bananarama92.github.io/MBS/main/mbs.js"),
-                document.head.appendChild(e),
-                (mbsLoaded = !0);
-            }, 2e3);
-        }
-        function loadBCAR() {
-          if (bcarLoaded) return;
-          let e = document.createElement("script");
-          (e.src = "https://drbranestawm.github.io/BCAR/script/bcarBeta.js"),
-            document.head.appendChild(e),
-            (bcarLoaded = !0);
-        }
-        function loadBCT() {
-          if (bctLoaded) return;
-          let e = document.createElement("script");
-          (e.src = "https://agicitag.github.io/BCTweaks/beta/extension/bct.js"),
-            document.head.appendChild(e),
-            (bctLoaded = !0);
-        }
+    if (fbcLoaded) {
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = `https://sidiousious.gitlab.io/bce/bce.user.js?v=${(
+      Date.now() / 10000
+    ).toFixed(0)}`;
+    document.head.appendChild(script);
+    fbcLoaded = true;
+  }
+  
+  function loadBCX() {
+    if (bcxLoaded) {
+        return;
+      }
+    setTimeout(() => {
+      if (window.BCX_Loaded === undefined) {
+        const n = document.createElement("script");
+        n.setAttribute("language", "JavaScript");
+        n.setAttribute("crossorigin", "anonymous");
+        n.setAttribute(
+          "src",
+          "https://jomshir98.github.io/bondage-club-extended/bcx.js?_=" + Date.now()
+        );
+        n.onload = () => n.remove();
+        document.head.appendChild(n);
+        bcxLoaded = true;
+      }
+    }, 2000);
+  }
+  
+  function loadMBS() {
+    if (mbsLoaded) {
+        return;
+      }
+    setTimeout(() => {
+      const n = document.createElement("script");
+      n.language = "JavaScript";
+      n.crossorigin = "anonymous";
+      n.src = "https://bananarama92.github.io/MBS/main/mbs.js";
+      document.head.appendChild(n);
+      mbsLoaded = true;
+    }, 2000);
+  }
+  function loadBCAR() {
+    if (bcarLoaded) {
+        return;
+      }
+    const script = document.createElement("script");
+    script.src = "https://drbranestawm.github.io/BCAR/script/bcarBeta.js";
+    document.head.appendChild(script);
+    bcarLoaded = true;
+  }
+  
+  function loadBCT() {
+    if (bctLoaded) {
+        return;
+      }
+    const script = document.createElement("script");
+    script.src = "https://agicitag.github.io/BCTweaks/beta/extension/bct.js";
+    document.head.appendChild(script);
+    bctLoaded = true;
+  }
         let options = [
           {
             name: "FBC",
