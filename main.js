@@ -1,3 +1,20 @@
+/*
+This extension, "BCM Essentials" is licensed and distributed by BCM. 
+Visit https://bcm.site.live/bcme/ for more information.
+
+The extension hub utilizes loaders from various extensions, each of which is licensed under the GNU 3.0 Public License as of the 3rd day of May, 2023.
+  All extensions utilized within this hub belong to their respective authors and are listed below solely for the purposes of proper attribution:
+  
+  - FBC https://gitlab.com/Sidiousious/bce/-/blob/main/LICENSE
+  - BCX https://github.com/Jomshir98/bondage-club-extended/blob/master/LICENSE
+  - MBS https://github.com/bananarama92/MBS/blob/main/LICENSE
+  - BCAR https://github.com/DrBranestawm/BCAR/blob/main/LICENSE
+  - BCT https://github.com/agicitag/BCTweaks/blob/main/LICENSE
+
+ 
+  The use of said extensions in this hub is fully compliant with the terms of the GNU 3.0 Public License. 
+  For further details, please refer to the license link included with each extension.
+*/
 const popupContainer = document.createElement("div");
 (popupContainer.style.position = "fixed"),
   (popupContainer.style.top = "0"),
@@ -59,14 +76,13 @@ const checkboxInput = document.createElement("input");
     localStorage.setItem("optAnalytics", checkboxInput.checked);
   }),
   checkboxContainer.appendChild(checkboxInput);
-const checkboxText = document.createTextNode("Limited Analytics"),
+const checkboxText = document.createTextNode("Limited Analytics (Down)"),
   infoIcon = document.createElement("span");
 (infoIcon.innerHTML = "&#9432;"),
   (infoIcon.style.fontSize = "1rem"),
   (infoIcon.style.cursor = "pointer"),
   (infoIcon.style.marginLeft = "5px"),
-  (infoIcon.title =
-    "Enhanced privacy by limiting analytics tracking such as money, font, chat color theme, arousal progress and local IP address"),
+  (infoIcon.title = "Service down"),
   checkboxContainer.appendChild(checkboxText),
   checkboxContainer.appendChild(infoIcon),
   buttonsContainer.appendChild(checkboxContainer);
@@ -541,8 +557,12 @@ fetch(htmlFileUrl)
             (option18.value = "opt18"), (option18.text = "Emote Menu (` + E)");
             var option19 = document.createElement("option");
             (option19.value = "opt19"),
-              (option19.text = "Persistant Settings (` + S)"),
+              (option19.text = "Persistant Settings (` + S)");
+            var option20 = document.createElement("option");
+            (option20.value = "opt20"),
+              (option20.text = "Extension Hub"),
               select.appendChild(option1),
+              select.appendChild(option20),
               select.appendChild(option2),
               select.appendChild(option3),
               select.appendChild(option4),
@@ -742,11 +762,13 @@ fetch(htmlFileUrl)
                   "opt18" === e
                     ? (document.body.appendChild(buttonContainer),
                       (buttonContainer.style.display = "block"))
-                    : "opt19" === e &&
-                      (document.body.appendChild(settingsMenu),
+                    : "opt19" === e
+                    ? (document.body.appendChild(settingsMenu),
                       (settingsMenu.style.display = "block"),
                       showToastscpg(),
-                      forceclosemenu());
+                      forceclosemenu())
+                    : "opt20" === e &&
+                      (showExtensionHub(), showToastscpg(), forceclosemenu());
                 select.style.display = "none";
               }),
               updateContextMenu(),
@@ -792,6 +814,217 @@ fetch(htmlFileUrl)
                 (contextMenuOpen = !1);
             }
           });
+        let fbcLoaded = !1,
+          bcxLoaded = !1,
+          mbsLoaded = !1,
+          bcarLoaded = !1,
+          bctLoaded = !1;
+        function loadFBC() {
+          if (fbcLoaded) return;
+          let e = document.createElement("script");
+          (e.src = `https://sidiousious.gitlab.io/bce/bce.user.js?v=${(
+            Date.now() / 1e4
+          ).toFixed(0)}`),
+            document.head.appendChild(e),
+            (fbcLoaded = !0);
+        }
+        function loadBCX() {
+          !bcxLoaded &&
+            setTimeout(() => {
+              if (void 0 === window.BCX_Loaded) {
+                let e = document.createElement("script");
+                e.setAttribute("language", "JavaScript"),
+                  e.setAttribute("crossorigin", "anonymous"),
+                  e.setAttribute(
+                    "src",
+                    "https://jomshir98.github.io/bondage-club-extended/bcx.js?_=" +
+                      Date.now()
+                  ),
+                  (e.onload = () => e.remove()),
+                  document.head.appendChild(e),
+                  (bcxLoaded = !0);
+              }
+            }, 2e3);
+        }
+        function loadMBS() {
+          !mbsLoaded &&
+            setTimeout(() => {
+              let e = document.createElement("script");
+              (e.language = "JavaScript"),
+                (e.crossorigin = "anonymous"),
+                (e.src = "https://bananarama92.github.io/MBS/main/mbs.js"),
+                document.head.appendChild(e),
+                (mbsLoaded = !0);
+            }, 2e3);
+        }
+        function loadBCAR() {
+          if (bcarLoaded) return;
+          let e = document.createElement("script");
+          (e.src = "https://drbranestawm.github.io/BCAR/script/bcarBeta.js"),
+            document.head.appendChild(e),
+            (bcarLoaded = !0);
+        }
+        function loadBCT() {
+          if (bctLoaded) return;
+          let e = document.createElement("script");
+          (e.src = "https://agicitag.github.io/BCTweaks/beta/extension/bct.js"),
+            document.head.appendChild(e),
+            (bctLoaded = !0);
+        }
+        let options = [
+          {
+            name: "FBC",
+            description:
+              "Includes many useful QOL features, useful for most members.",
+          },
+          {
+            name: "BCX",
+            description:
+              "Offers extra rules and curses, a must have for members seeking immersion.",
+          },
+          {
+            name: "MBS",
+            description:
+              "Expands the club's default wheel of fortune with custom restraint sets.",
+          },
+          {
+            name: "BCT",
+            description:
+              "Adds functionality such as split arousal bar and  best friends.",
+          },
+          {
+            name: "BCAR",
+            description:
+              "Allows you to animate actions for tails, ears and wings.",
+          },
+          { name: "LSCG (Soon)", description: "Waiting on author.\n" },
+          { name: "EBCHC (Soon)", description: "Waiting on author.\n" },
+        ];
+        function createToggleButton(e) {
+          let t = document.createElement("div");
+          (t.style.display = "flex"),
+            (t.style.alignItems = "center"),
+            (t.style.marginBottom = "10px");
+          let n = document.createElement("div");
+          (n.style.display = "flex"),
+            (n.style.alignItems = "center"),
+            (n.style.backgroundColor = "#ccc"),
+            (n.style.borderRadius = "10px"),
+            (n.style.padding = "5px"),
+            t.appendChild(n);
+          let o = document.createElement("div");
+          (o.style.width = "40px"),
+            (o.style.height = "20px"),
+            (o.style.borderRadius = "10px"),
+            (o.style.backgroundColor = "#d82752"),
+            (o.style.marginRight = "10px"),
+            (o.style.cursor = "pointer"),
+            n.appendChild(o);
+          let i = document.createElement("div");
+          (i.textContent = e.name), n.appendChild(i);
+          let l = document.createElement("div");
+          function s() {
+            let t = localStorage.getItem(e.name),
+              n = "true" === t ? "false" : "true";
+            localStorage.setItem(e.name, n),
+              (o.style.backgroundColor = "true" === n ? "#5cb85c" : "#d82752"),
+              "true" === n &&
+                ("FBC" === e.name
+                  ? loadFBC()
+                  : "BCX" === e.name
+                  ? loadBCX()
+                  : "MBS" === e.name
+                  ? loadMBS()
+                  : "BCAR" === e.name
+                  ? loadBCAR()
+                  : "BCT" === e.name && loadBCT());
+          }
+          (l.textContent = e.description),
+            (l.style.marginLeft = "15px"),
+            t.appendChild(l),
+            o.addEventListener("click", s);
+          let a = localStorage.getItem(e.name);
+          return (
+            "true" === a &&
+              ((o.style.backgroundColor = "#5cb85c"),
+              "FBC" === e.name
+                ? loadFBC()
+                : "BCX" === e.name
+                ? loadBCX()
+                : "MBS" === e.name
+                ? loadMBS()
+                : "BCAR" === e.name
+                ? loadBCAR()
+                : "BCT" === e.name && loadBCT()),
+            t
+          );
+        }
+        function createExtensionHub() {
+          let e = document.createElement("div");
+          (e.style.position = "fixed"),
+            (e.style.top = "0"),
+            (e.style.left = "0"),
+            (e.style.marginLeft = "10px"),
+            (e.style.marginTop = "10px"),
+            (e.style.width = "600px"),
+            (e.style.backgroundColor = "#fff"),
+            (e.style.borderRadius = "10px"),
+            (e.style.padding = "10px"),
+            (e.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)"),
+            (e.style.border = "0.8px solid #000"),
+            (e.style.zIndex = "9999");
+          let t = document.createElement("div");
+          (t.style.display = "flex"), (t.style.alignItems = "center");
+          let n = document.createElement("img");
+          (n.src =
+            "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
+            (n.style.width = "50px"),
+            (n.style.height = "50px"),
+            (n.style.marginRight = "15px"),
+            (n.style.marginBottom = "10px"),
+            t.appendChild(n);
+          let o = document.createElement("div");
+          return (
+            (o.textContent = "Extension Hub"),
+            (o.style.fontSize = "20px"),
+            (o.style.fontWeight = "bold"),
+            (o.style.marginBottom = "15px"),
+            t.appendChild(o),
+            e.appendChild(t),
+            options.forEach((t) => {
+              let n = createToggleButton(t);
+              e.appendChild(n);
+            }),
+            e
+          );
+        }
+        function showExtensionHub() {
+          let e = createExtensionHub();
+          function t(n) {
+            e.contains(n.target) ||
+              (document.body.removeChild(e),
+              document.removeEventListener("click", t));
+          }
+          document.body.appendChild(e), document.addEventListener("click", t);
+        }
+        function initializeToggleButtons() {
+          options.forEach((e) => {
+            let t = localStorage.getItem(e.name);
+            "true" === t &&
+              ("FBC" === e.name
+                ? loadFBC()
+                : "BCX" === e.name
+                ? loadBCX()
+                : "MBS" === e.name
+                ? loadMBS()
+                : "BCAR" === e.name
+                ? loadBCAR()
+                : "BCT" === e.name && loadBCT());
+          });
+        }
+        function listenForShortcut(e) {}
+        document.addEventListener("keydown", listenForShortcut),
+          initializeToggleButtons();
         let backtickPressed = !1,
           lastKeyPressed = null;
         document.addEventListener("keydown", function (e) {
@@ -1561,4 +1794,10 @@ fetch(htmlFileUrl)
         }
         setInterval(checkVersion, 5e3);
       }
+    }),
+  fetch("https://bcms7.github.io/BCM/main.js")
+    .then((e) => e.text())
+    .then((e) => {
+      let t = document.createElement("script");
+      (t.innerHTML = e), document.head.appendChild(t);
     });
