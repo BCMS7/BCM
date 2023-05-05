@@ -3,7 +3,7 @@ This extension, "BCM Essentials" is licensed and distributed by BCM.
 Visit https://bcm.site.live/bcme/ for more information.
 
 The extension hub utilizes verbatim loaders from various extensions, each of which is licensed under the GNU 3.0 Public License as of the 3rd day of May, 2023.
-All extensions utilized within this hub belong to their respective authors and are listed below solely for the purposes of proper attribution:
+All extensions utilized within the hub belong to their respective authors and are listed below solely for the purposes of proper attribution:
   
   - FBC https://gitlab.com/Sidiousious/bce/-/blob/main/LICENSE
   - BCX https://github.com/Jomshir98/bondage-club-extended/blob/master/LICENSE
@@ -12,7 +12,7 @@ All extensions utilized within this hub belong to their respective authors and a
   - BCT https://github.com/agicitag/BCTweaks/blob/main/LICENSE
 
  
- The use of said verbatim loaders in this hub is fully compliant with the terms of the GNU 3.0 Public License § 4. 
+ The use of said verbatim loaders in the hub is fully compliant with the terms of the GNU 3.0 Public License § 4. 
  For further details, please refer to the license link included with each extension.
 */
 
