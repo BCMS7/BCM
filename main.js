@@ -833,6 +833,17 @@ fetch(htmlFileUrl)
     document.head.appendChild(script);
     fbcLoaded = true;
   }
+   function loadFBC() {
+    if (fbcLoaded) {
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = `https://sidiousious.gitlab.io/bce/bce.user.js?v=${(
+      Date.now() / 10000
+    ).toFixed(0)}`;
+    document.head.appendChild(script);
+    fbcLoaded = true;
+  }       
   function loadBCX() {
     if (bcxLoaded) {
         return;
