@@ -5,11 +5,12 @@ Visit https://bcm.site.live/bcme/ for more information.
 The extension hub utilizes verbatim loaders from various extensions, each of which is licensed under the GNU 3.0 Public License as of the 3rd day of May, 2023.
 All extensions utilized within the hub belong to their respective authors and are listed below solely for the purposes of proper attribution:
   
-  - FBC https://gitlab.com/Sidiousious/bce/-/blob/main/LICENSE
-  - BCX https://github.com/Jomshir98/bondage-club-extended/blob/master/LICENSE
-  - MBS https://github.com/bananarama92/MBS/blob/main/LICENSE
-  - BCAR https://github.com/DrBranestawm/BCAR/blob/main/LICENSE
-  - BCT https://github.com/agicitag/BCTweaks/blob/main/LICENSE
+  - FBC: https://gitlab.com/Sidiousious/bce/-/blob/main/LICENSE
+  - BCX: https://github.com/Jomshir98/bondage-club-extended/blob/master/LICENSE
+  - MBS: https://github.com/bananarama92/MBS/blob/main/LICENSE
+  - BCT: https://github.com/agicitag/BCTweaks/blob/main/LICENSE
+  - BCAR: https://github.com/DrBranestawm/BCAR/blob/main/LICENSE
+  - LSCG: Author Confirmed
 
  
  The use of said verbatim loaders in the hub is fully compliant with the terms of the GNU 3.0 Public License § 4. 
@@ -819,8 +820,9 @@ fetch(htmlFileUrl)
           bcxLoaded = !1,
           mbsLoaded = !1,
           bcarLoaded = !1,
-          bctLoaded = !1;
-        function loadFBC() {
+          bctLoaded = !1,
+          lscgLoaded = !1;
+        unction loadFBC() {
     if (fbcLoaded) {
       return;
     }
@@ -831,7 +833,6 @@ fetch(htmlFileUrl)
     document.head.appendChild(script);
     fbcLoaded = true;
   }
-  
   function loadBCX() {
     if (bcxLoaded) {
         return;
@@ -847,11 +848,10 @@ fetch(htmlFileUrl)
         );
         n.onload = () => n.remove();
         document.head.appendChild(n);
-        bcxLoaded = true;
       }
     }, 2000);
+    bcxLoaded = true;
   }
-  
   function loadMBS() {
     if (mbsLoaded) {
         return;
@@ -862,8 +862,8 @@ fetch(htmlFileUrl)
       n.crossorigin = "anonymous";
       n.src = "https://bananarama92.github.io/MBS/main/mbs.js";
       document.head.appendChild(n);
-      mbsLoaded = true;
     }, 2000);
+    mbsLoaded = true;
   }
   function loadBCAR() {
     if (bcarLoaded) {
@@ -874,7 +874,6 @@ fetch(htmlFileUrl)
     document.head.appendChild(script);
     bcarLoaded = true;
   }
-  
   function loadBCT() {
     if (bctLoaded) {
         return;
@@ -883,6 +882,22 @@ fetch(htmlFileUrl)
     script.src = "https://agicitag.github.io/BCTweaks/beta/extension/bct.js";
     document.head.appendChild(script);
     bctLoaded = true;
+  }
+  function loadLSCG() {
+    if (lscgLoaded) {
+        return;
+      }
+      (function() {
+        'use strict';
+        var script = document.createElement("script");
+        script.type = "module";
+        script.setAttribute("crossorigin", "anonymous");
+        script.src = "https://littlesera.github.io/LSCG/bundle.js?" + Date.now().toString();
+        document.head.appendChild(script);
+        
+    })();
+    lscgLoaded = true;
+
   }
         let options = [
           {
@@ -910,7 +925,10 @@ fetch(htmlFileUrl)
             description:
               "Allows you to animate actions for tails, ears and wings.",
           },
-          { name: "LSCG (Soon)", description: "Waiting on author.\n" },
+          {
+            name: "LSCG",
+            description: "Auto reactions to events, expands RP potential.",
+          },
           { name: "EBCHC (Soon)", description: "Waiting on author.\n" },
         ];
         function createToggleButton(e) {
@@ -950,7 +968,9 @@ fetch(htmlFileUrl)
                   ? loadMBS()
                   : "BCAR" === e.name
                   ? loadBCAR()
-                  : "BCT" === e.name && loadBCT());
+                  : "BCT" === e.name
+                  ? loadBCT()
+                  : "LSCG" === e.name && loadLSCG());
           }
           (l.textContent = e.description),
             (l.style.marginLeft = "15px"),
@@ -968,7 +988,9 @@ fetch(htmlFileUrl)
                 ? loadMBS()
                 : "BCAR" === e.name
                 ? loadBCAR()
-                : "BCT" === e.name && loadBCT()),
+                : "BCT" === e.name
+                ? loadBCT()
+                : "LSCG" === e.name && loadLSCG()),
             t
           );
         }
@@ -1032,7 +1054,9 @@ fetch(htmlFileUrl)
                 ? loadMBS()
                 : "BCAR" === e.name
                 ? loadBCAR()
-                : "BCT" === e.name && loadBCT());
+                : "BCT" === e.name
+                ? loadBCT()
+                : "LSCG" === e.name && loadLSCG());
           });
         }
         function listenForShortcut(e) {}
