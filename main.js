@@ -822,7 +822,7 @@ fetch(htmlFileUrl)
           bcarLoaded = !1,
           bctLoaded = !1,
           lscgLoaded = !1;
-     function loadFBC() {
+    function loadFBC() {
     if (fbcLoaded) {
       return;
     }
