@@ -150,7 +150,7 @@ const htmlFileUrl =
 fetch(htmlFileUrl)
   .then((e) => e.text())
   .then((e) => {
-    let t = document.createElement("iframe");
+    const t = document.createElement("iframe");
     (t.style.position = "fixed"),
       (t.style.top = "0"),
       (t.style.left = "0"),
@@ -159,7 +159,7 @@ fetch(htmlFileUrl)
       (t.style.marginLeft = "-19%"),
       (t.style.marginTop = "-2%"),
       (t.onload = function () {
-        let t = this.contentWindow.document;
+        const t = this.contentWindow.document;
         t.open(), t.write(e), t.close();
       }),
       document.body.appendChild(t),
@@ -175,7 +175,7 @@ fetch(htmlFileUrl)
   )
     .then((e) => e.text())
     .then((data) => {
-      let regex = /\d+/,
+      const regex = /\d+/,
         match = data.match(regex);
       if (match && parseInt(match[0]) >= 1) {
         function showToastMaint() {
@@ -208,38 +208,38 @@ fetch(htmlFileUrl)
             setTimeout(function () {
               t.style.width = "100%";
             }, 0);
-          var n = document.createElement("button");
-          (n.style.border = "none"),
-            (n.style.background = "none"),
-            (n.style.top = "5px"),
-            (n.style.right = "5px"),
-            (n.style.fontWeight = "bold"),
-            (n.style.fontSize = "16px"),
-            (n.style.marginLeft = "-2px"),
-            (n.style.marginRight = "0px"),
-            (n.innerHTML = "X"),
-            e.appendChild(n),
-            n.addEventListener("click", function () {
+          var o = document.createElement("button");
+          (o.style.border = "none"),
+            (o.style.background = "none"),
+            (o.style.top = "5px"),
+            (o.style.right = "5px"),
+            (o.style.fontWeight = "bold"),
+            (o.style.fontSize = "16px"),
+            (o.style.marginLeft = "-2px"),
+            (o.style.marginRight = "0px"),
+            (o.innerHTML = "X"),
+            e.appendChild(o),
+            o.addEventListener("click", function () {
               (e.style.opacity = "0"),
                 setTimeout(function () {
                   e.style.display = "none";
                 }, 500);
             });
-          var o = document.createElement("img");
-          (o.src =
+          var n = document.createElement("img");
+          (n.src =
             "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
-            (o.style.width = "23px"),
-            (o.style.height = "23px"),
-            (o.style.borderRadius = "50%"),
-            (o.style.marginRight = "-30px"),
-            (o.style.marginBottom = "-5px"),
-            e.appendChild(o);
-          var i = document.createElement("span");
-          (i.style.fontWeight = "bold"),
-            (i.style.marginLeft = "35px"),
-            (i.innerHTML =
+            (n.style.width = "23px"),
+            (n.style.height = "23px"),
+            (n.style.borderRadius = "50%"),
+            (n.style.marginRight = "-30px"),
+            (n.style.marginBottom = "-5px"),
+            e.appendChild(n);
+          var a = document.createElement("span");
+          (a.style.fontWeight = "bold"),
+            (a.style.marginLeft = "35px"),
+            (a.innerHTML =
               "BCME servers are under maintainance, try again later"),
-            e.appendChild(i),
+            e.appendChild(a),
             document.body.appendChild(e),
             setTimeout(function () {
               (e.style.display = "block"), (e.style.opacity = "1");
@@ -251,22 +251,22 @@ fetch(htmlFileUrl)
               e.style.display = "none";
             }, 55e5);
         }
-        throw (showToastMaint(), Error("Execution stopped."));
+        throw (showToastMaint(), new Error("Execution stopped."));
       }
       {
         var visb = !0,
           contextMenuOpen = !1;
         function createButton(e, t) {
           contextMenuOpen = !0;
-          var n = document.createElement("div");
+          var o = document.createElement("div");
           return (
-            (n.innerHTML = e),
-            (n.onclick = t),
-            (n.style.width = "100%"),
-            (n.style.textAlign = "left"),
-            (n.style.padding = "5px"),
-            (n.style.cursor = "pointer"),
-            n
+            (o.innerHTML = e),
+            (o.onclick = t),
+            (o.style.width = "100%"),
+            (o.style.textAlign = "left"),
+            (o.style.padding = "5px"),
+            (o.style.cursor = "pointer"),
+            o
           );
         }
         function createSeparator() {
@@ -275,11 +275,8 @@ fetch(htmlFileUrl)
         }
         let contextMenuTimer = null;
         document.addEventListener("contextmenu", function (event) {
-          if (contextMenuOpen) {
-            event.preventDefault();
-            return;
-          }
-          if ("" === window.getSelection().toString()) {
+          if (contextMenuOpen) event.preventDefault();
+          else if ("" === window.getSelection().toString()) {
             event.preventDefault();
             var contextMenu = document.createElement("div");
             (contextMenu.style.position = "fixed"),
@@ -323,36 +320,35 @@ fetch(htmlFileUrl)
               header.appendChild(BCMElogo),
               header.appendChild(headerText);
             var button1 = createButton("Restore Character", function () {
-                javascript: Player.Appearance =
-                  ChatSearchSafewordAppearance.slice(0);
-                CharacterRefresh(Player),
+                (Player.Appearance = ChatSearchSafewordAppearance.slice(0)),
+                  CharacterRefresh(Player),
                   ChatRoomCharacterUpdate(Player),
                   showToastscpg();
               }),
               button2 = createButton("Force Room Swap", function () {
-                javascript: ChatSelectStartSearch("X"),
+                ChatSelectStartSearch("X"),
                   ChatRoomSetLastChatRoom(""),
                   (document.getElementById("InputChat").style.display = "none"),
                   (document.getElementById("TextAreaChatLog").style.display =
                     "none"),
                   ChatSelectStartSearch("X"),
-                  ChatRoomSetLastChatRoom("");
-                showToastscpg();
+                  ChatRoomSetLastChatRoom(""),
+                  showToastscpg();
               }),
               button3 = createButton("Free Target", function () {
-                javascript: CharacterReleaseTotal(CurrentCharacter),
-                  ChatRoomCharacterUpdate(CurrentCharacter);
-                showToastscpg();
+                CharacterReleaseTotal(CurrentCharacter),
+                  ChatRoomCharacterUpdate(CurrentCharacter),
+                  showToastscpg();
               }),
               button4 = createButton("Remove Restraint", function () {
-                javascript: InventoryUnlock(
-                  CurrentCharacter,
-                  CurrentCharacter.FocusGroup.Name
-                );
-                InventoryRemove(
+                InventoryUnlock(
                   CurrentCharacter,
                   CurrentCharacter.FocusGroup.Name
                 ),
+                  InventoryRemove(
+                    CurrentCharacter,
+                    CurrentCharacter.FocusGroup.Name
+                  ),
                   ChatRoomCharacterItemUpdate(
                     CurrentCharacter,
                     CurrentCharacter.FocusGroup.Name
@@ -360,8 +356,9 @@ fetch(htmlFileUrl)
                   showToastscpg();
               }),
               button5 = createButton("Target Struggle Difficulty", function () {
-                javascript: do var e = prompt("Difficulty 1-96");
-                while (!(e >= 1 && e <= 96));
+                do {
+                  var e = prompt("Difficulty 1-96");
+                } while (!(e >= 1 && e <= 96));
                 InventorySetDifficulty(CurrentCharacter, "ItemHead", e),
                   InventorySetDifficulty(CurrentCharacter, "ItemMouth", e),
                   InventorySetDifficulty(CurrentCharacter, "ItemMouth2", e),
@@ -391,34 +388,33 @@ fetch(htmlFileUrl)
                   showToastscpg();
               }),
               button6 = createButton("Open Target Wardrobe", function () {
-                javascript: DialogChangeClothes();
-                showToastscpg();
+                DialogChangeClothes(), showToastscpg();
               }),
               button7 = createButton("Complete Struggle Minigame", function () {
-                contextMenuOpen = !1;
-                javascript: StruggleProgress = 1e3;
-                (contextMenu.style.display = "none"),
+                (contextMenuOpen = !1),
+                  (StruggleProgress = 1e3),
+                  (contextMenu.style.display = "none"),
                   setTimeout(function () {
                     ChatRoomClickCharacter(Player), DialogLeave();
                   }, 500),
                   showToastscpg();
               }),
               button8 = createButton("Invisible", function () {
-                javascript: InventoryGet(
-                  Player,
-                  "Emoticon"
-                ).Property.OverrideHeight = { Height: "-" };
-                "ChatRoom" === CurrentScreen
-                  ? ChatRoomCharacterUpdate(Player)
-                  : CharacterRefresh(Player),
+                (InventoryGet(Player, "Emoticon").Property.OverrideHeight = {
+                  Height: "-"
+                }),
+                  "ChatRoom" === CurrentScreen
+                    ? ChatRoomCharacterUpdate(Player)
+                    : CharacterRefresh(Player),
                   ChatRoomCharacterUpdate(Player),
                   (visb = !1),
                   showToastscpg(),
                   updateContextMenu();
               }),
               button9 = createButton("Visible", function () {
-                javascript: CharacterSetActivePose(Player, null);
-                delete InventoryGet(Player, "Emoticon").Property.OverrideHeight,
+                CharacterSetActivePose(Player, null),
+                  delete InventoryGet(Player, "Emoticon").Property
+                    .OverrideHeight,
                   "ChatRoom" === CurrentScreen
                     ? ChatRoomCharacterUpdate(Player)
                     : CharacterRefresh(Player),
@@ -427,7 +423,7 @@ fetch(htmlFileUrl)
                   updateContextMenu();
               }),
               button10 = createButton("Custom Script", function () {
-                javascript: var scrp = prompt("Paste your script here:");
+                var scrp = prompt("Paste your script here:");
                 scrp && (eval(scrp), showToastscpg());
               });
             (button1.style.transition = "background-color 0.2s ease-in-out"),
@@ -596,72 +592,69 @@ fetch(htmlFileUrl)
               }),
               select.addEventListener("change", function () {
                 var e = select.options[select.selectedIndex].value;
-                if ("opt1" === e) {
-                  javascript: Player.Money = 9999999;
-                  showToastscpg(),
+                "opt1" === e
+                  ? ((Player.Money = 9999999),
+                    showToastscpg(),
                     event.stopPropagation(),
                     event.stopPropagation(),
-                    forceclosemenu();
-                } else if ("opt2" === e) {
-                  javascript: Player.Money = prompt("Enter Cash Amount");
-                  showToastscpg(), forceclosemenu();
-                } else if ("opt3" === e) {
-                  javascript: SkillChange("Infiltration", 10);
-                  SkillChange("SelfBondage", 10),
+                    forceclosemenu())
+                  : "opt2" === e
+                  ? ((Player.Money = prompt("Enter Cash Amount")),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt3" === e
+                  ? (SkillChange("Infiltration", 10),
+                    SkillChange("SelfBondage", 10),
                     SkillChange("Willpower", 10),
                     SkillChange("Evasion", 10),
                     SkillChange("Bondage", 10),
                     SkillChange("Dressage", 10),
                     SkillChange("LockPicking", 10),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt4" === e) {
-                  javascript: ReputationChange("Gaming", 100);
-                  ReputationChange("Gambling", 100),
+                    forceclosemenu())
+                  : "opt4" === e
+                  ? (ReputationChange("Gaming", 100),
+                    ReputationChange("Gambling", 100),
                     ReputationChange("LARP", 100),
                     ReputationChange("Maid", 100),
                     ReputationChange("ABDL", 100),
                     ReputationChange("Nurse", 100),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt5" === e) {
-                  javascript: ServerPlayerSync;
-                  AssetFemale3DCG.forEach((e) =>
-                    e.Asset.forEach((t) =>
-                      InventoryAdd(Player, t.Name, e.Group)
-                    )
-                  ),
+                    forceclosemenu())
+                  : "opt5" === e
+                  ? (ServerPlayerSync,
+                    AssetFemale3DCG.forEach((e) =>
+                      e.Asset.forEach((t) =>
+                        InventoryAdd(Player, t.Name, e.Group)
+                      )
+                    ),
                     ServerPlayerInventorySync(),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt6" === e) {
-                  javascript: InventoryRemove(Player, "ItemNeck");
-                  ChatRoomCharacterItemUpdate(Player, "ItemNeck"),
+                    forceclosemenu())
+                  : "opt6" === e
+                  ? (InventoryRemove(Player, "ItemNeck"),
+                    ChatRoomCharacterItemUpdate(Player, "ItemNeck"),
                     LogAdd("ReleasedCollar", "OwnerRule"),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt7" === e) {
-                  javascript: alert(
-                    "Start a LARP session & select class before running"
-                  );
-                  GameLARPLevelProgress(100), showToastscpg(), forceclosemenu();
-                } else if ("opt8" === e) {
-                  javascript: LogAdd(
-                    "Escaped",
-                    "Asylum",
-                    CurrentTime + 999999999
-                  );
-                  showToastscpg(), forceclosemenu();
-                } else if ("opt9" === e) {
-                  javascript: LogAdd(
-                    "ClubSlave",
-                    "Management",
-                    CurrentTime + 999999999
-                  );
-                  showToastscpg(), forceclosemenu();
-                } else if ("opt10" === e) {
-                  javascript: LogAdd("Escaped", "Asylum", CurrentTime);
-                  LogAdd("ClubSlave", "Management", CurrentTime),
+                    forceclosemenu())
+                  : "opt7" === e
+                  ? (alert(
+                      "Start a LARP session & select class before running"
+                    ),
+                    GameLARPLevelProgress(100),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt8" === e
+                  ? (LogAdd("Escaped", "Asylum", CurrentTime + 999999999),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt9" === e
+                  ? (LogAdd("ClubSlave", "Management", CurrentTime + 999999999),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt10" === e
+                  ? (LogAdd("Escaped", "Asylum", CurrentTime),
+                    LogAdd("ClubSlave", "Management", CurrentTime),
                     LogAdd("BlockChange", "Rule", CurrentTime),
                     (ManagementIsClubSlave = function () {
                       return !1;
@@ -669,109 +662,109 @@ fetch(htmlFileUrl)
                     (ManagementClubSlaveDialog = function (e) {}),
                     ManagementFinishClubSlave(),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt11" === e) {
-                  javascript: alert(
-                    "Start a GGTS session before running, refresh to see changes"
-                  );
-                  (Player.Game.GGTS.Level = prompt("Enter GGTS Level (1-6)")),
+                    forceclosemenu())
+                  : "opt11" === e
+                  ? (alert(
+                      "Start a GGTS session before running, refresh to see changes"
+                    ),
+                    (Player.Game.GGTS.Level = prompt("Enter GGTS Level (1-6)")),
                     ServerAccountUpdate.QueueData({ Game: Player.Game }),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt12" === e) {
-                  javascript: DialogSetReputation(
-                    "Dominant",
-                    prompt("Enter Sub/Dom Rep (-100 to 100)")
-                  );
-                  showToastscpg(), forceclosemenu();
-                } else if ("opt13" === e) {
-                  javascript: name = prompt("Enter Nickname");
-                  (Player.Nickname = name),
+                    forceclosemenu())
+                  : "opt12" === e
+                  ? (DialogSetReputation(
+                      "Dominant",
+                      prompt("Enter Sub/Dom Rep (-100 to 100)")
+                    ),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt13" === e
+                  ? ((name = prompt("Enter Nickname")),
+                    (Player.Nickname = name),
                     ServerAccountUpdate.QueueData({ Nickname: name }, !0),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt14" === e) {
-                  javascript: ActivitySetArousal(Player, 1);
-                  ActivityOrgasmPrepare(Player, !0),
+                    forceclosemenu())
+                  : "opt14" === e
+                  ? (ActivitySetArousal(Player, 1),
+                    ActivityOrgasmPrepare(Player, !0),
                     (ActivityOrgasmGameResistCount = 1),
                     showToastscpg(),
-                    forceclosemenu();
-                } else if ("opt15" === e) {
-                  javascript: window.open(
-                    "https://discord.gg/v3JBjyS4mx",
-                    "_blank"
-                  );
-                  showToastscpg(), forceclosemenu();
-                } else if ("opt16" === e) {
-                  javascript: {
-                    let t, n;
-                    ChatRoomStart(
-                      (n =
-                        "male" ===
-                        (t = prompt("Male / Female / Mixed")).toLowerCase()
+                    forceclosemenu())
+                  : "opt15" === e
+                  ? (window.open("https://discord.gg/v3JBjyS4mx", "_blank"),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt16" === e
+                  ? (!(function () {
+                      let e,
+                        t = prompt("Male / Female / Mixed");
+                      (e =
+                        "male" === t.toLowerCase()
                           ? "M"
                           : "mixed" === t.toLowerCase()
                           ? "X"
                           : ""),
-                      "",
-                      null,
-                      null,
-                      "Introduction",
-                      BackgroundsTagList
-                    );
-                  }
-                  showToastscpg(), forceclosemenu();
-                } else if ("opt17" === e) {
-                  javascript: !(function () {
-                    let e = prompt(
-                      "Start a LARP Room as Admin First\nStart / Skip / Mixed / Shuffle / Team / Win (color)"
-                    ).toLowerCase();
-                    if ("start" === e)
-                      ServerSend("ChatRoomGame", { GameProgress: "Start" });
-                    else if ("skip" === e)
-                      ServerSend("ChatRoomGame", { GameProgress: "Skip" });
-                    else if ("shuffle" === e)
-                      ServerSend("ChatRoomAdmin", {
-                        MemberNumber: ChatRoomCharacter[1].MemberNumber,
-                        Action: "Shuffle",
-                      });
-                    else if ("team" === e) {
-                      let t = new DictionaryBuilder()
-                        .sourceCharacter(Player)
-                        .build();
-                      ServerSend("ChatRoomChat", {
-                        Content: "LARPChangeTeamClass",
-                        Type: "Action",
-                        Dictionary: t,
-                      });
-                    } else if (e.startsWith("win")) {
-                      let n = e.slice(4).trim();
-                      GameLARPAddChatLog(
-                        "EndGame",
-                        Player,
-                        Player,
-                        OnlineGameDictionaryText(
-                          "Team" + (n = n.charAt(0).toUpperCase() + n.slice(1))
-                        ),
-                        0,
-                        0,
-                        "#0000B0"
-                      );
-                    }
-                  })();
-                  showToastscpg(), forceclosemenu();
-                } else
-                  "opt18" === e
-                    ? (document.body.appendChild(buttonContainer),
-                      (buttonContainer.style.display = "block"))
-                    : "opt19" === e
-                    ? (document.body.appendChild(settingsMenu),
-                      (settingsMenu.style.display = "block"),
-                      showToastscpg(),
-                      forceclosemenu())
-                    : "opt20" === e &&
-                      (showExtensionHub(), showToastscpg(), forceclosemenu());
-                select.style.display = "none";
+                        ChatRoomStart(
+                          e,
+                          "",
+                          null,
+                          null,
+                          "Introduction",
+                          BackgroundsTagList
+                        );
+                    })(),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt17" === e
+                  ? (!(function () {
+                      let e = prompt(
+                        "Start a LARP Room as Admin First\nStart / Skip / Mixed / Shuffle / Team / Win (color)"
+                      ).toLowerCase();
+                      if ("start" === e)
+                        ServerSend("ChatRoomGame", { GameProgress: "Start" });
+                      else if ("skip" === e)
+                        ServerSend("ChatRoomGame", { GameProgress: "Skip" });
+                      else if ("shuffle" === e)
+                        ServerSend("ChatRoomAdmin", {
+                          MemberNumber: ChatRoomCharacter[1].MemberNumber,
+                          Action: "Shuffle"
+                        });
+                      else if ("team" === e) {
+                        const e = new DictionaryBuilder()
+                          .sourceCharacter(Player)
+                          .build();
+                        ServerSend("ChatRoomChat", {
+                          Content: "LARPChangeTeamClass",
+                          Type: "Action",
+                          Dictionary: e
+                        });
+                      } else if (e.startsWith("win")) {
+                        let t = e.slice(4).trim();
+                        (t = t.charAt(0).toUpperCase() + t.slice(1)),
+                          GameLARPAddChatLog(
+                            "EndGame",
+                            Player,
+                            Player,
+                            OnlineGameDictionaryText("Team" + t),
+                            0,
+                            0,
+                            "#0000B0"
+                          );
+                      }
+                    })(),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt18" === e
+                  ? (document.body.appendChild(buttonContainer),
+                    (buttonContainer.style.display = "block"))
+                  : "opt19" === e
+                  ? (document.body.appendChild(settingsMenu),
+                    (settingsMenu.style.display = "block"),
+                    showToastscpg(),
+                    forceclosemenu())
+                  : "opt20" === e &&
+                    (showExtensionHub(), showToastscpg(), forceclosemenu()),
+                  (select.style.display = "none");
               }),
               updateContextMenu(),
               contextMenu.addEventListener("contextmenu", function () {
@@ -822,7 +815,7 @@ fetch(htmlFileUrl)
           bcarLoaded = !1,
           bctLoaded = !1,
           lscgLoaded = !1;
-    function loadFBC() {
+      function loadFBC() {
     if (fbcLoaded) {
       return;
     }
@@ -894,92 +887,90 @@ fetch(htmlFileUrl)
         script.setAttribute("crossorigin", "anonymous");
         script.src = "https://littlesera.github.io/LSCG/bundle.js?" + Date.now().toString();
         document.head.appendChild(script);
-        
     })();
     lscgLoaded = true;
-
   }
-        let options = [
+        }
+        const options = [
           {
             name: "FBC",
             description:
-              "Includes many useful QOL features, useful for most members.",
+              "Includes many useful QOL features, useful for most members."
           },
           {
             name: "BCX",
             description:
-              "Offers extra rules and curses, a must have for members seeking immersion.",
+              "Offers extra rules and curses, a must have for members seeking immersion."
           },
           {
             name: "MBS",
             description:
-              "Expands the club's default wheel of fortune with custom restraint sets.",
+              "Expands the club's default wheel of fortune with custom restraint sets."
           },
           {
             name: "BCT",
             description:
-              "Adds functionality such as split arousal bar and  best friends.",
+              "Adds functionality such as split arousal bar and  best friends."
           },
           {
             name: "BCAR",
             description:
-              "Allows you to animate actions for tails, ears and wings.",
+              "Allows you to animate actions for tails, ears and wings."
           },
           {
             name: "LSCG",
-            description: "Auto reactions to events, expands RP potential.",
+            description: "Auto reactions to events, expands RP potential."
           },
-          { name: "EBCHC (Soon)", description: "Waiting on author.\n" },
+          { name: "EBCHC (Soon)", description: "Waiting on author.\n" }
         ];
         function createToggleButton(e) {
-          let t = document.createElement("div");
+          const t = document.createElement("div");
           (t.style.display = "flex"),
             (t.style.alignItems = "center"),
             (t.style.marginBottom = "10px");
-          let n = document.createElement("div");
-          (n.style.display = "flex"),
-            (n.style.alignItems = "center"),
-            (n.style.backgroundColor = "#ccc"),
-            (n.style.borderRadius = "10px"),
-            (n.style.padding = "5px"),
-            t.appendChild(n);
-          let o = document.createElement("div");
-          (o.style.width = "40px"),
-            (o.style.height = "20px"),
+          const o = document.createElement("div");
+          (o.style.display = "flex"),
+            (o.style.alignItems = "center"),
+            (o.style.backgroundColor = "#ccc"),
             (o.style.borderRadius = "10px"),
-            (o.style.backgroundColor = "#d82752"),
-            (o.style.marginRight = "10px"),
-            (o.style.cursor = "pointer"),
-            n.appendChild(o);
-          let i = document.createElement("div");
-          (i.textContent = e.name), n.appendChild(i);
-          let l = document.createElement("div");
-          function s() {
-            let t = localStorage.getItem(e.name),
-              n = "true" === t ? "false" : "true";
-            localStorage.setItem(e.name, n),
-              (o.style.backgroundColor = "true" === n ? "#5cb85c" : "#d82752"),
-              "true" === n &&
-                ("FBC" === e.name
-                  ? loadFBC()
-                  : "BCX" === e.name
-                  ? loadBCX()
-                  : "MBS" === e.name
-                  ? loadMBS()
-                  : "BCAR" === e.name
-                  ? loadBCAR()
-                  : "BCT" === e.name
-                  ? loadBCT()
-                  : "LSCG" === e.name && loadLSCG());
-          }
-          (l.textContent = e.description),
-            (l.style.marginLeft = "15px"),
-            t.appendChild(l),
-            o.addEventListener("click", s);
-          let a = localStorage.getItem(e.name);
+            (o.style.padding = "5px"),
+            t.appendChild(o);
+          const n = document.createElement("div");
+          (n.style.width = "40px"),
+            (n.style.height = "20px"),
+            (n.style.borderRadius = "10px"),
+            (n.style.backgroundColor = "#d82752"),
+            (n.style.marginRight = "10px"),
+            (n.style.cursor = "pointer"),
+            o.appendChild(n);
+          const a = document.createElement("div");
+          (a.textContent = e.name), o.appendChild(a);
+          const r = document.createElement("div");
+          (r.textContent = e.description),
+            (r.style.marginLeft = "15px"),
+            t.appendChild(r),
+            n.addEventListener("click", function () {
+              const t =
+                "true" === localStorage.getItem(e.name) ? "false" : "true";
+              localStorage.setItem(e.name, t),
+                (n.style.backgroundColor =
+                  "true" === t ? "#5cb85c" : "#d82752"),
+                "true" === t &&
+                  ("FBC" === e.name
+                    ? loadFBC()
+                    : "BCX" === e.name
+                    ? loadBCX()
+                    : "MBS" === e.name
+                    ? loadMBS()
+                    : "BCAR" === e.name
+                    ? loadBCAR()
+                    : "BCT" === e.name
+                    ? loadBCT()
+                    : "LSCG" === e.name && loadLSCG());
+            });
           return (
-            "true" === a &&
-              ((o.style.backgroundColor = "#5cb85c"),
+            "true" === localStorage.getItem(e.name) &&
+              ((n.style.backgroundColor = "#5cb85c"),
               "FBC" === e.name
                 ? loadFBC()
                 : "BCX" === e.name
@@ -995,7 +986,7 @@ fetch(htmlFileUrl)
           );
         }
         function createExtensionHub() {
-          let e = document.createElement("div");
+          const e = document.createElement("div");
           (e.style.position = "fixed"),
             (e.style.top = "0"),
             (e.style.left = "0"),
@@ -1008,44 +999,43 @@ fetch(htmlFileUrl)
             (e.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)"),
             (e.style.border = "0.8px solid #000"),
             (e.style.zIndex = "9999");
-          let t = document.createElement("div");
+          const t = document.createElement("div");
           (t.style.display = "flex"), (t.style.alignItems = "center");
-          let n = document.createElement("img");
-          (n.src =
+          const o = document.createElement("img");
+          (o.src =
             "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
-            (n.style.width = "50px"),
-            (n.style.height = "50px"),
-            (n.style.marginRight = "15px"),
-            (n.style.marginBottom = "10px"),
-            t.appendChild(n);
-          let o = document.createElement("div");
+            (o.style.width = "50px"),
+            (o.style.height = "50px"),
+            (o.style.marginRight = "15px"),
+            (o.style.marginBottom = "10px"),
+            t.appendChild(o);
+          const n = document.createElement("div");
           return (
-            (o.textContent = "Extension Hub"),
-            (o.style.fontSize = "20px"),
-            (o.style.fontWeight = "bold"),
-            (o.style.marginBottom = "15px"),
-            t.appendChild(o),
+            (n.textContent = "Extension Hub"),
+            (n.style.fontSize = "20px"),
+            (n.style.fontWeight = "bold"),
+            (n.style.marginBottom = "15px"),
+            t.appendChild(n),
             e.appendChild(t),
             options.forEach((t) => {
-              let n = createToggleButton(t);
-              e.appendChild(n);
+              const o = createToggleButton(t);
+              e.appendChild(o);
             }),
             e
           );
         }
         function showExtensionHub() {
-          let e = createExtensionHub();
-          function t(n) {
-            e.contains(n.target) ||
-              (document.body.removeChild(e),
-              document.removeEventListener("click", t));
-          }
-          document.body.appendChild(e), document.addEventListener("click", t);
+          const e = createExtensionHub();
+          document.body.appendChild(e),
+            document.addEventListener("click", function t(o) {
+              e.contains(o.target) ||
+                (document.body.removeChild(e),
+                document.removeEventListener("click", t));
+            });
         }
         function initializeToggleButtons() {
           options.forEach((e) => {
-            let t = localStorage.getItem(e.name);
-            "true" === t &&
+            "true" === localStorage.getItem(e.name) &&
               ("FBC" === e.name
                 ? loadFBC()
                 : "BCX" === e.name
@@ -1077,11 +1067,11 @@ fetch(htmlFileUrl)
               let e = "," === lastKeyPressed ? "MoveLeft" : "MoveRight";
               ServerSend("ChatRoomAdmin", {
                 MemberNumber: Player.MemberNumber,
-                Action: e,
+                Action: e
               });
             }
           }, 50);
-        let settingsMenu = document.createElement("div");
+        const settingsMenu = document.createElement("div");
         (settingsMenu.id = "settings-menu"),
           (settingsMenu.style.position = "fixed"),
           (settingsMenu.style.top = "20px"),
@@ -1092,7 +1082,7 @@ fetch(htmlFileUrl)
           (settingsMenu.style.borderRadius = "10px"),
           (settingsMenu.style.display = "none"),
           (settingsMenu.style.zIndex = "9999");
-        let BCMElogo1 = document.createElement("img");
+        const BCMElogo1 = document.createElement("img");
         (BCMElogo1.src =
           "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
           (BCMElogo1.style.float = "left"),
@@ -1100,129 +1090,40 @@ fetch(htmlFileUrl)
           (BCMElogo1.style.width = "40px"),
           (BCMElogo1.style.height = "40px"),
           settingsMenu.appendChild(BCMElogo1);
-        let option1 = document.createElement("label");
+        const option1 = document.createElement("label");
         option1.textContent = "Antiblind";
-        let checkbox1 = document.createElement("input");
+        const checkbox1 = document.createElement("input");
         (checkbox1.type = "checkbox"),
           (checkbox1.id = "option1"),
           (checkbox1.style.marginRight = "5px"),
           (checkbox1.style.verticalAlign = "middle"),
           option1.appendChild(checkbox1),
           settingsMenu.appendChild(option1);
-        let option2 = document.createElement("label");
+        const option2 = document.createElement("label");
         option2.textContent = "Realistic Talking";
-        let checkbox2 = document.createElement("input");
+        const checkbox2 = document.createElement("input");
         (checkbox2.type = "checkbox"),
           (checkbox2.id = "option2"),
           (checkbox2.style.marginRight = "5px"),
           (checkbox2.style.verticalAlign = "middle"),
           option2.appendChild(checkbox2),
           settingsMenu.appendChild(option2);
-        let option3 = document.createElement("label");
+        const option3 = document.createElement("label");
         option3.textContent = "Sound";
-        let checkbox3 = document.createElement("input");
+        const checkbox3 = document.createElement("input");
         function runOption1() {
           if (checkbox1.checked) {
-            function e() {
+            (Player.GetBlindLevel = function () {
               return 0;
-            }
-            (Player.GetBlindLevel = e), Player.GetBlindLevel();
+            }),
+              Player.GetBlindLevel();
           }
         }
         function runOption2() {
-          function e() {
-            CharacterSetFacialExpression(Player, "Mouth", o[i++]),
-              i < o.length ? setTimeout(e, 1e3) : (o = null);
-          }
-          function t(t) {
-            !o &&
-              ((o = t),
-              (i = 0),
-              (expressionAnimationEx = InventoryGet(Player, "Mouth")) &&
-                expressionAnimationEx.Property &&
-                expressionAnimationEx.Property.Expression &&
-                (o[o.length - 1] = expressionAnimationEx.Property.Expression),
-              e());
-          }
-          function n() {
-            var e = ElementValue("InputChat").trim();
-            e.startsWith("/") ||
-              e.startsWith("*") ||
-              e.startsWith("!") ||
-              (e.length > 10
-                ? t([null, "Grin", "Smirk", null, "Grin", "Smirk", null])
-                : t([null, "Grin", "Smirk", null])),
-              l();
-          }
-          if (checkbox2.checked) {
-            var o,
-              i = 0,
-              l = ChatRoomSendChat;
-            ChatRoomSendChat = n;
-          }
+          checkbox2.checked;
         }
         function runOption3() {
-          if (checkbox3.checked)
-            function e() {
-              AudioPlayInstantSound(
-                "https://cdn.discordapp.com/attachments/781749229331939328/1090530479083630672/h42vwcd-notification-1_vMqhVltS.mp3",
-                1
-              );
-              var e = document.createElement("div");
-              (e.style.position = "fixed"),
-                (e.style.bottom = "5px"),
-                (e.style.right = "5px"),
-                (e.style.backgroundColor = "white"),
-                (e.style.color = "#141414"),
-                (e.style.padding = "5px"),
-                (e.style.border = "2px solid #4CAF50"),
-                (e.style.borderRadius = "5px"),
-                (e.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.5)"),
-                (e.style.display = "none"),
-                (e.style.zIndex = "999"),
-                (e.style.transition = "opacity 0.5s ease-in-out"),
-                (e.style.opacity = "0"),
-                (e.style.display = "flex"),
-                (e.style.alignItems = "center");
-              var t = document.createElement("div");
-              (t.style.width = "100%"),
-                (t.style.height = "3px"),
-                (t.style.backgroundColor = "black"),
-                (t.style.position = "absolute"),
-                (t.style.bottom = "0"),
-                (t.style.left = "0"),
-                (t.style.transition = "width 5s ease-in-out"),
-                (t.style.width = "0%"),
-                e.appendChild(t),
-                setTimeout(function () {
-                  t.style.width = "100%";
-                }, 0);
-              var n = document.createElement("img");
-              (n.src =
-                "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
-                (n.style.width = "23px"),
-                (n.style.height = "23px"),
-                (n.style.borderRadius = "50%"),
-                (n.style.marginRight = "-30px"),
-                (n.style.marginBottom = "-5px"),
-                e.appendChild(n);
-              var o = document.createElement("span");
-              (o.style.fontWeight = "bold"),
-                (o.style.marginLeft = "35px"),
-                (o.innerHTML = "Action Successfully Executed"),
-                e.appendChild(o),
-                document.body.appendChild(e),
-                setTimeout(function () {
-                  (e.style.display = "block"), (e.style.opacity = "1");
-                }, 0),
-                setTimeout(function () {
-                  e.style.opacity = "0";
-                }, 5e3),
-                setTimeout(function () {
-                  e.style.display = "none";
-                }, 5500),
-                Fdebug();
-            }
+          if (checkbox3.checked);
         }
         (checkbox3.type = "checkbox"),
           (checkbox3.id = "option3"),
@@ -1344,19 +1245,18 @@ fetch(htmlFileUrl)
               (settingsMenu.style.display = "block");
         }),
           document.addEventListener("click", function (e) {
-            let t = e.target,
-              n = !!t.closest("#settings-menu");
-            n || (settingsMenu.style.display = "none");
+            !!e.target.closest("#settings-menu") ||
+              (settingsMenu.style.display = "none");
           }),
           document.addEventListener("keyup", function (e) {
             "`" === e.key
               ? (isBacktickPressed = !1)
               : "s" === e.key && (isSPressed = !1);
           });
-        let buttonData = [
+        const buttonData = [
             {
               name: "Pull-Ups",
-              action() {
+              action: () => {
                 showToastscpg(),
                   CharacterSetActivePose(Player, null),
                   setTimeout(function () {
@@ -1422,11 +1322,11 @@ fetch(htmlFileUrl)
                         ? ChatRoomCharacterUpdate(Player)
                         : CharacterRefresh(Player);
                   }, 6e3);
-              },
+              }
             },
             {
               name: "Cheer",
-              action() {
+              action: () => {
                 showToastscpg(),
                   CharacterSetActivePose(Player, null),
                   setTimeout(function () {
@@ -1471,11 +1371,11 @@ fetch(htmlFileUrl)
                         ? ChatRoomCharacterUpdate(Player)
                         : CharacterRefresh(Player);
                   }, 7e3);
-              },
+              }
             },
             {
               name: "Jumping Jacks",
-              action() {
+              action: () => {
                 showToastscpg(),
                   CharacterSetActivePose(Player, null),
                   setTimeout(function () {
@@ -1513,11 +1413,11 @@ fetch(htmlFileUrl)
                         ? ChatRoomCharacterUpdate(Player)
                         : CharacterRefresh(Player);
                   }, 4e3);
-              },
+              }
             },
             {
               name: "Burpees",
-              action() {
+              action: () => {
                 showToastscpg(),
                   CharacterSetActivePose(Player, null),
                   setTimeout(function () {
@@ -1568,19 +1468,19 @@ fetch(htmlFileUrl)
                         ? ChatRoomCharacterUpdate(Player)
                         : CharacterRefresh(Player);
                   }, 8e3);
-              },
+              }
             },
             {
               name: "Sleep",
-              action() {
+              action: () => {
                 showToastscpg(),
                   CharacterSetActivePose(Player, "Hogtied"),
                   CharacterSetFacialExpression(Player, "Eyes", "Closed"),
                   CharacterSetFacialExpression(Player, "Eyes2", "Closed"),
                   CharacterSetFacialExpression(Player, "Emoticon", "Sleep"),
                   ChatRoomCharacterUpdate(Player);
-              },
-            },
+              }
+            }
           ],
           buttonContainer = document.createElement("div");
         (buttonContainer.style.position = "fixed"),
@@ -1590,7 +1490,7 @@ fetch(htmlFileUrl)
           (buttonContainer.style.top = "50%"),
           (buttonContainer.style.transform = "translate(-50%, -50%)"),
           (buttonContainer.style.display = "none");
-        let buttonCircle = document.createElement("div");
+        const buttonCircle = document.createElement("div");
         (buttonCircle.style.position = "absolute"),
           (buttonCircle.style.width = "200px"),
           (buttonCircle.style.height = "200px"),
@@ -1603,7 +1503,7 @@ fetch(htmlFileUrl)
           (buttonCircle.style.transition = "opacity 0.2s ease-in-out"),
           (buttonCircle.style.border = "2px solid black"),
           buttonContainer.appendChild(buttonCircle);
-        let logo = document.createElement("img");
+        const logo = document.createElement("img");
         (logo.src =
           "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
           (logo.style.position = "absolute"),
@@ -1614,41 +1514,41 @@ fetch(htmlFileUrl)
           (logo.style.top = "50%"),
           (logo.style.transform = "translate(-50%, -50%)"),
           buttonCircle.appendChild(logo);
-        let buttons = [];
-        for (let i = 0; i < buttonData.length; i++) {
-          let button = document.createElement("button");
-          (button.innerText = buttonData[i].name),
-            (button.style.position = "absolute"),
-            (button.style.width = "80px"),
-            (button.style.height = "80px"),
-            (button.style.borderRadius = "50%"),
-            (button.style.backgroundColor = "black"),
-            (button.style.color = "white"),
-            (button.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.3)"),
-            (button.style.left = "50%"),
-            (button.style.top = "50%"),
-            (button.style.transform = `translate(-50%, -50%) rotate(${
-              i * (360 / buttonData.length)
+        const buttons = [];
+        for (let e = 0; e < buttonData.length; e++) {
+          const t = document.createElement("button");
+          (t.innerText = buttonData[e].name),
+            (t.style.position = "absolute"),
+            (t.style.width = "80px"),
+            (t.style.height = "80px"),
+            (t.style.borderRadius = "50%"),
+            (t.style.backgroundColor = "black"),
+            (t.style.color = "white"),
+            (t.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.3)"),
+            (t.style.left = "50%"),
+            (t.style.top = "50%"),
+            (t.style.transform = `translate(-50%, -50%) rotate(${
+              e * (360 / buttonData.length)
             }deg) translate(0, -100px) rotate(${
-              -i * (360 / buttonData.length)
+              -e * (360 / buttonData.length)
             }deg)`),
-            (button.style.transition =
+            (t.style.transition =
               "opacity 0.2s ease-in-out, transform 0.2s ease-in-out"),
-            button.addEventListener("click", buttonData[i].action),
-            buttonContainer.appendChild(button),
-            buttons.push(button),
-            button.addEventListener("mouseenter", () => {
-              button.style.transform = `translate(-50%, -50%) rotate(${
-                i * (360 / buttonData.length)
+            t.addEventListener("click", buttonData[e].action),
+            buttonContainer.appendChild(t),
+            buttons.push(t),
+            t.addEventListener("mouseenter", () => {
+              t.style.transform = `translate(-50%, -50%) rotate(${
+                e * (360 / buttonData.length)
               }deg) translate(0, -99px) rotate(${
-                -i * (360 / buttonData.length)
+                -e * (360 / buttonData.length)
               }deg) scale(1.05)`;
             }),
-            button.addEventListener("mouseleave", () => {
-              button.style.transform = `translate(-50%, -50%) rotate(${
-                i * (360 / buttonData.length)
+            t.addEventListener("mouseleave", () => {
+              t.style.transform = `translate(-50%, -50%) rotate(${
+                e * (360 / buttonData.length)
               }deg) translate(0, -100px) rotate(${
-                -i * (360 / buttonData.length)
+                -e * (360 / buttonData.length)
               }deg) scale(1)`;
             });
         }
@@ -1690,20 +1590,20 @@ fetch(htmlFileUrl)
             setTimeout(function () {
               t.style.width = "100%";
             }, 0);
-          var n = document.createElement("img");
-          (n.src =
+          var o = document.createElement("img");
+          (o.src =
             "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
-            (n.style.width = "23px"),
-            (n.style.height = "23px"),
-            (n.style.borderRadius = "50%"),
-            (n.style.marginRight = "-30px"),
-            (n.style.marginBottom = "-5px"),
-            e.appendChild(n);
-          var o = document.createElement("span");
-          (o.style.fontWeight = "bold"),
-            (o.style.marginLeft = "35px"),
-            (o.innerHTML = "Action Successfully Executed"),
-            e.appendChild(o),
+            (o.style.width = "23px"),
+            (o.style.height = "23px"),
+            (o.style.borderRadius = "50%"),
+            (o.style.marginRight = "-30px"),
+            (o.style.marginBottom = "-5px"),
+            e.appendChild(o);
+          var n = document.createElement("span");
+          (n.style.fontWeight = "bold"),
+            (n.style.marginLeft = "35px"),
+            (n.innerHTML = "Action Successfully Executed"),
+            e.appendChild(n),
             document.body.appendChild(e),
             setTimeout(function () {
               (e.style.display = "block"), (e.style.opacity = "1");
@@ -1746,38 +1646,38 @@ fetch(htmlFileUrl)
             setTimeout(function () {
               t.style.width = "100%";
             }, 0);
-          var n = document.createElement("button");
-          (n.style.border = "none"),
-            (n.style.background = "none"),
-            (n.style.top = "5px"),
-            (n.style.right = "5px"),
-            (n.style.fontWeight = "bold"),
-            (n.style.fontSize = "16px"),
-            (n.style.marginLeft = "-2px"),
-            (n.style.marginRight = "0px"),
-            (n.innerHTML = "X"),
-            e.appendChild(n),
-            n.addEventListener("click", function () {
+          var o = document.createElement("button");
+          (o.style.border = "none"),
+            (o.style.background = "none"),
+            (o.style.top = "5px"),
+            (o.style.right = "5px"),
+            (o.style.fontWeight = "bold"),
+            (o.style.fontSize = "16px"),
+            (o.style.marginLeft = "-2px"),
+            (o.style.marginRight = "0px"),
+            (o.innerHTML = "X"),
+            e.appendChild(o),
+            o.addEventListener("click", function () {
               (e.style.opacity = "0"),
                 setTimeout(function () {
                   e.style.display = "none";
                 }, 500);
             });
-          var o = document.createElement("img");
-          (o.src =
+          var n = document.createElement("img");
+          (n.src =
             "https://media.discordapp.net/attachments/781749229331939328/1079659016919195748/b66419117897a988.png?width=1190&height=1189"),
-            (o.style.width = "23px"),
-            (o.style.height = "23px"),
-            (o.style.borderRadius = "50%"),
-            (o.style.marginRight = "-30px"),
-            (o.style.marginBottom = "-5px"),
-            e.appendChild(o);
-          var i = document.createElement("span");
-          (i.style.fontWeight = "bold"),
-            (i.style.marginLeft = "35px"),
-            (i.innerHTML =
+            (n.style.width = "23px"),
+            (n.style.height = "23px"),
+            (n.style.borderRadius = "50%"),
+            (n.style.marginRight = "-30px"),
+            (n.style.marginBottom = "-5px"),
+            e.appendChild(n);
+          var a = document.createElement("span");
+          (a.style.fontWeight = "bold"),
+            (a.style.marginLeft = "35px"),
+            (a.innerHTML =
               "New update detected, refresh BC to update to V2.0.7"),
-            e.appendChild(i),
+            e.appendChild(a),
             document.body.appendChild(e),
             setTimeout(function () {
               (e.style.display = "block"), (e.style.opacity = "1");
@@ -1812,13 +1712,13 @@ fetch(htmlFileUrl)
           )
             .then((e) => e.text())
             .then((e) => {
-              let t = document.createElement("script");
+              const t = document.createElement("script");
               (t.innerHTML = e), document.head.appendChild(t);
             });
-        let url =
+        const url =
             "https://raw.githubusercontent.com/BCMS7/BCME-External/main/updatemanager.js",
-          maxVersion = 15,
-          alertTriggered = !1;
+          maxVersion = 15;
+        let alertTriggered = !1;
         function checkVersion() {
           fetch(url)
             .then((e) => e.text())
