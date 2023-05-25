@@ -8,7 +8,7 @@ All extensions utilized within the hub belong to their respective authors and ar
   - FBC: https://gitlab.com/Sidiousious/bce/-/blob/main/LICENSE
   - BCX: https://github.com/Jomshir98/bondage-club-extended/blob/master/LICENSE
   - MBS: https://github.com/bananarama92/MBS/blob/main/LICENSE
-  - BCT: https://github.com/agicitag/BCTweaks/blob/main/LICENSE
+  - BCTweaks: https://github.com/agicitag/BCTweaks/blob/main/LICENSE
   - BCAR: https://github.com/DrBranestawm/BCAR/blob/main/LICENSE
   - LSCG: Author Confirmed
 
