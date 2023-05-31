@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BCM Essentials
 // @version      2.0.0
-// @description BCM is a powerful right click quick-menu extension for BC that adds a range of useful utility and customisation features to to BC. With a simple right-click while in BC, you can easily access the BCM menu and take advantage of its many features.
+// @description BCME is a powerful right click quick-menu extension for BC that adds a range of useful utility and customisation features to to BC. With a simple right-click while in BC, you can easily access the BCM menu and take advantage of its many features.
 // @author       BCM  | ΩmеgаX#3723
 // @match https://bondageprojects.elementfx.com/*
 // @match https://www.bondageprojects.elementfx.com/*
